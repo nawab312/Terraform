@@ -49,6 +49,7 @@ module "eks" {
     cluster_version = "1.29"
 
     cluster_endpoint_public_access = true
+    #Makes EKS Cluster's endpoint accessible over public internet.This allows users and applications to access the Kubernetes API server from outside the VPC 
     enable_cluster_creator_admin_permissions = true
 
     cluster_addons = {
@@ -56,6 +57,13 @@ module "eks" {
             service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
         }
     }
+    /*
+    aws-ebs-csi-driver: This specifies the AWS EBS (Elastic Block Store) Container Storage Interface (CSI) driver add-on. 
+    The EBS CSI driver is a Kubernetes add-on that enables the EKS cluster to dynamically manage and attach EBS volumes to pods as persistent storage.
+
+    service_account_role_arn: This is the IAM role ARN (Amazon Resource Name) associated with the service account that the EBS CSI driver will use. 
+    By specifying the IAM role here, the CSI driver can access AWS services (like EBS) as required for its functionality.
+    */
 
     vpc_id = module.vpc.vpc_id
     subnet_ids = module.vpc.private_subnets
