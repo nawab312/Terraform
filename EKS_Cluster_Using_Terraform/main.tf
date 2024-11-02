@@ -108,3 +108,7 @@ module "irsa-ebs-csi" {
   oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:ebs-csi-controller-sa"]
 }
 
+#Access your cluster with
+#aws eks --region <region> update-kubeconfig --name <cluster_name>
+
+
