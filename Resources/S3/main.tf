@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_s3_bucket" "my_bucket" {
     bucket = "my-sid-bucket-3121" #Must be Globally Unique
     tags = {
-      Name = "MyS3Bucker"
+      Name = "MyS3Bucket"
     }
 }
 
