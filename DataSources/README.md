@@ -1,1 +1,1 @@
-`main-2.tf`&nbsp;&nbsp;Get a list of Amazon Machine Images (AMIs) in a specific AWS region 
+- `main-1.tf` It retrieves the most recent Amazon Linux 2 AMI based on a specific name pattern and outputs its ID.
