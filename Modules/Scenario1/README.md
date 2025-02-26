@@ -75,3 +75,6 @@ module "module_b" {
 - In this root module:
   - `module_a` is called first, and it creates the EC2 instance.
   - `module_b` is called next, but it depends on the output from `module_a` (`module.module_a.instance_id`). This ensures that module_b won't execute until `module_a` has completed successfully.
+ 
+![Uploading image.png…]()
+
