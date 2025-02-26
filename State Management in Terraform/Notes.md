@@ -18,3 +18,4 @@ It contains the following key information: Resources, Outputs, Provider Informat
 - **Encryption:** If you're storing the state remotely, enable encryption to protect sensitive data. For example, with S3, you can use server-side encryption to encrypt the state file.
 - **Access Control:** Limit access to the state file by using appropriate permissions and roles. Only authorized users or systems should have access to read or modify the state.
 - **State File Backup:** You should back up your state file regularly to prevent data loss in case of corruption or accidental deletion.
+- **Enabling versioning on the S3 bucket** where the state file is stored. This way, if the state file is accidentally deleted, you can restore it from a previous version.
