@@ -30,4 +30,20 @@ provider "google" {
 **Can providers be customized? For example, if a provider doesn’t have some functionality you need, is there a way to extend it?**
 Terraform providers themselves can’t typically be extended directly by users, but they can be customized in a couple of ways. One way is through the use of *local-exec* or *remote-exec* provisioners. The community sometimes creates custom providers, or you can even build your own provider using the Go programming language
 
-- The `terraform providers lock` command is useful to lock down the versions of the providers you are using in your configuration, preventing unexpected issues from newer provider releases and ensuring your Terraform setup is reproducible and consisten
+- The `terraform providers lock` command is useful to lock down the versions of the providers you are using in your configuration, preventing unexpected issues from newer provider releases and ensuring your Terraform setup is reproducible and consistent
+
+```bash
+terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/aws...
+- Installing hashicorp/aws v5.88.0...
+- Installed hashicorp/aws v5.88.0 (signed by HashiCorp)
+
+Terraform has created a lock file `.terraform.lock.hcl`to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+```
