@@ -84,4 +84,5 @@ Acquiring state lock. This may take a few moments...
 │ flag, but this is not recommended.
 ```
 
+- Terraform automatically unlocks the state after a successful run, but if a process is interrupted, you might need to unlock it manually: `terraform force-unlock <LOCK_ID>`
 
