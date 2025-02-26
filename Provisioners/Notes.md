@@ -87,7 +87,7 @@ resource "aws_instance" "example" {
 }
 ```
 
-- **By default, Terraform fails the resource creation if a provisioner fails. If you want to ignore failures, you can use `on_failue = "continue"` :**
+- By default, Terraform *fails* the resource creation if a provisioner fails. If you want to ignore failures, you can use `on_failue = "continue"` 
 
 ```hcl
 provisioner "remote-exec" {
