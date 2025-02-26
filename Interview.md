@@ -1,4 +1,4 @@
-** QUESTION Imagine you're working with Terraform, and you have the Terraform state file stored in an AWS S3 bucket. What would happen if you accidentally delete the state file from S3? And then, after that, if you run `terraform apply`, what would be the result?**
+**QUESTION --> Imagine you're working with Terraform, and you have the Terraform state file stored in an AWS S3 bucket. What would happen if you accidentally delete the state file from S3? And then, after that, if you run `terraform apply`, what would be the result?**
 - Terraform would lose track of the current infrastructure it’s managing because the state file is essential for Terraform to know what resources are already created, modified, or destroyed.
 - If you run `terraform apply` after deleting the state file, Terraform essentially wouldn’t be aware of the existing resources. It would treat the infrastructure as if nothing has been provisioned before. In other words, Terraform will attempt to recreate all the resources from scratch.
 - Risks Involved:
