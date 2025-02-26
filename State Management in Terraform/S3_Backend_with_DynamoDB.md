@@ -85,4 +85,5 @@ Acquiring state lock. This may take a few moments...
 ```
 
 - Terraform automatically unlocks the state after a successful run, but if a process is interrupted, you might need to unlock it manually: `terraform force-unlock <LOCK_ID>`
+- This command will move the state file from its current location to the specified backend (Like local to S3): `terraform init -migrate-state`
 
