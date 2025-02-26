@@ -26,3 +26,5 @@ It contains the following key information: Resources, Outputs, Provider Informat
 - `terraform state pull` This command retrieves the state from the remote backend, which is useful when you're working with a remote state.
 - `terraform state push` This command pushes a local state file to a remote backend.
 - `terraform state rm` This command removes a resource from the state file, which is useful if you want Terraform to stop managing a particular resource without actually deleting it.
+
+- Setting Up Remote State Backend: https://github.com/nawab312/Terraform/blob/main/State%20Management%20in%20Terraform/S3_Backend_with_DynamoDB.md
