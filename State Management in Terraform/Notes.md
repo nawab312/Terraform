@@ -42,7 +42,7 @@ It contains the following key information: Resources, Outputs, Provider Informat
     ```
     - Run the command:
       ```bash 
-      bash terraform import aws_instance.example i-0abcd1234efgh5678
+      terraform import aws_instance.example i-0abcd1234efgh5678
       ```
 
 - Setting Up Remote State Backend: https://github.com/nawab312/Terraform/blob/main/State%20Management%20in%20Terraform/S3_Backend_with_DynamoDB.md
