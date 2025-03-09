@@ -26,5 +26,20 @@ It contains the following key information: Resources, Outputs, Provider Informat
 - `terraform state pull` This command retrieves the state from the remote backend, which is useful when you're working with a remote state.
 - `terraform state push` This command pushes a local state file to a remote backend.
 - `terraform state rm` This command removes a resource from the state file, which is useful if you want Terraform to stop managing a particular resource without actually deleting it.
+- `terraform refesh`
+  - Updates the state to match current infrastructure
+  - Updates the state file to reflect the actual state of your resources.
+  - If resources are modified outside Terraform (e.g., AWS Console), the state file may become outdated.
+- `terraform import`
+  - Adds an unmanaged resource to state
+  - Brings an existing resource under Terraform management by adding it to the state file.
+  - Managing pre-existing infrastructure not initially created with Terraform.
+  - Steps to Import a Resource
+    - Identify the resource ID (e.g., an AWS EC2 instance ID: `i-0abcd1234efgh5678`).
+    - Define a placeholder block in your main.tf: 
+    ```hcl
+    resource aws_instance example {}
+    ```
+    - Run the command: ```bash terraform import aws_instance.example i-0abcd1234efgh5678```
 
 - Setting Up Remote State Backend: https://github.com/nawab312/Terraform/blob/main/State%20Management%20in%20Terraform/S3_Backend_with_DynamoDB.md
