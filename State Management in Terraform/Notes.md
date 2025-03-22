@@ -10,6 +10,18 @@ It contains the following key information: Resources, Outputs, Provider Informat
 - **Local State File:** By default, Terraform stores the state in a file named terraform.tfstate in the current working directory. This is useful for simple setups or for testing purposes, but it has some limitations, especially in team environments.
 - **Remote State:** In production environments, it is a best practice to store the state remotely (e.g., in an AWS S3 bucket, HashiCorp Consul, or Terraform Cloud). Remote state provides better collaboration, state locking, versioning, and redundancy.
 
+**State Locking**
+
+State Locking refers to the mechanism that prevents multiple users or processes from simultaneously modifying the Terraform state file. When Terraform is working with infrastructure, it needs to track the current state of the resources. If multiple users or processes try to modify the state file at the same time, it could lead to *race conditions* and *potentially corrupt the state*, resulting in inconsistent infrastructure.
+
+To avoid this, Terraform uses state locking. When a user runs `terraform apply` or any other command that modifies the state, Terraform locks the state file so that no one else can make changes until the process is completed. The locking mechanism is often implemented with remote backends, such as AWS S3 with DynamoDB for state locking or HashiCorp Consul.
+
+**State Versioning**
+
+State Versioning refers to the mechanism by which Terraform tracks different versions of the state file over time. As you modify and apply infrastructure changes, the state file is updated. Terraform uses versioning to keep track of these updates, allowing you to revert to a previous state if needed.
+
+Each time Terraform runs, it stores a new version of the state file, and the remote backend (like S3, Azure Blob Storage, etc.) stores these versions. *This is particularly useful when you need to roll back or troubleshoot infrastructure issues.*
+
 **Importance of the State File in Multi-User Environments**
 - **Concurrency:** In teams, multiple users may run Terraform concurrently, which can cause conflicts if two users try to change the same resource. To solve this, Terraform implements **state locking** when using remote backends like S3 with DynamoDB for locking. This prevents multiple users from making conflicting changes to the infrastructure.
 - **Collaboration:** The state file serves as a single source of truth about your infrastructure. When stored remotely, it can be shared among team members, ensuring that everyone is working with the latest version of the infrastructure state.
