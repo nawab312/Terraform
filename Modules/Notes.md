@@ -175,7 +175,8 @@ module "module_b" {
   - `module_a` is called first, and it creates the EC2 instance.
   - `module_b` is called next, but it depends on the output from `module_a` (`module.module_a.instance_id`). This ensures that module_b won't execute until `module_a` has completed successfully.
 
-![image](https://github.com/user-attachments/assets/b6bd4aa8-e7cf-414e-a927-a6296a02c7f7)
+![image](https://github.com/user-attachments/assets/5c5a8d96-9749-4bb9-8a96-0a9c47eed16b)
+
 
 
 
