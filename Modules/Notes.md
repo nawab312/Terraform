@@ -34,6 +34,7 @@ You have two Terraform modules:
 How can you ensure that the EC2 instance is created only after the S3 bucket is successfully provisioned, considering **Terraform’s dependency graph** and **implicit vs. explicit dependencies**?
 
 **SOLUTION**
+
  Terraform automatically builds a *dependency graph*, meaning resources that depend on outputs from another resource will implicitly wait for that resource to be created first.
 - In Module A, we define an output variable that exposes the S3 bucket name:
 ```hcl
