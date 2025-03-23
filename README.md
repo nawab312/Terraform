@@ -82,6 +82,7 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 - **Module Best Practices**
 - **Public vs. Private Modules**
 - **Terraform Registry for Modules**
+- https://github.com/nawab312/Terraform/blob/main/Modules/Notes.md
 
 **Interview** : https://github.com/nawab312/Terraform/blob/main/Interview.md
 
