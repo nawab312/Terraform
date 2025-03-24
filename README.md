@@ -72,7 +72,7 @@ Here, the aws_subnet resource depends on the aws_vpc resource because the subnet
 ```hcl
 resource "aws_security_group" "example" {
   name = "example"
-}
+}https://github.com/nawab312/Terraform/blob/main/Advance_Terraform_Features/Notes.md
 
 resource "aws_instance" "example" {
   ami = "ami-123456"
@@ -97,6 +97,7 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 - **Terraform Import (terraform import <resource> <id>)**
 - **Managing Long-Lived Resources (terraform taint, terraform untaint)**
 - **Handling State Drift (terraform refresh, terraform apply -refresh-only)**
+- https://github.com/nawab312/Terraform/blob/main/Advance_Terraform_Features/Notes.md
 
 **Interview** : https://github.com/nawab312/Terraform/blob/main/Interview.md
 
