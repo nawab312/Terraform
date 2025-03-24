@@ -49,7 +49,15 @@ In Terraform, resources often have dependencies on one another. For example, an 
 
 - **Implicit Dependencies** Terraform automatically creates dependencies between resources based on references. If a resource is referencing the output or attribute of another resource, Terraform understands that one depends on the other.
 ```hcl
-resource "aws_vpc" "main" {
+resource "aws_vpc" "main" { Advanced Terraform Features
+
+    Terraform Remote Backends (S3, Consul, etcd, Terraform Cloud)
+
+    Terraform Import (terraform import <resource> <id>)
+
+    Managing Long-Lived Resources (terraform taint, terraform untaint)
+
+    Handling State Drift (terraform refresh, terraform apply -refresh-only)
   cidr_block = "10.0.0.0/16"
 }
 
@@ -83,6 +91,12 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 - **Public vs. Private Modules**
 - **Terraform Registry for Modules**
 - https://github.com/nawab312/Terraform/blob/main/Modules/Notes.md
+
+###  Advanced Terraform Features ###
+- **Terraform Remote Backends (S3, Consul, etcd, Terraform Cloud)**
+- **Terraform Import (terraform import <resource> <id>)**
+- **Managing Long-Lived Resources (terraform taint, terraform untaint)**
+- **Handling State Drift (terraform refresh, terraform apply -refresh-only)**
 
 **Interview** : https://github.com/nawab312/Terraform/blob/main/Interview.md
 
