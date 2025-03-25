@@ -60,6 +60,10 @@ output "server_info" {
 ```
 
 - Creating AWS Instances from an Object List
+  - `for_each = { for server in var.servers : server.name => server }`
+    - `server.name` becomes the key (e.g., "web1", "web2", "db1")
+    - `server` (the entire object) becomes the value in the new map
+    - Since for_each expects a map, this transformation allows Terraform to create an AWS instance for each object.
 ```hcl
 variable "servers" {
   default = [
@@ -81,3 +85,20 @@ resource "aws_instance" "example" {
   }
 }
 ```
+Input: List of Objects (`var.servers`)
+```hcl
+[
+  { name = "web1", type = "t2.micro", env = "prod" },
+  { name = "web2", type = "t2.small", env = "dev" },
+  { name = "db1", type = "m5.large", env = "prod" }
+]
+```
+`for` Expression Converts List to Map
+```hcl
+{
+  "web1" = { name = "web1", type = "t2.micro", env = "prod" },
+  "web2" = { name = "web2", type = "t2.small", env = "dev" },
+  "db1"  = { name = "db1", type = "m5.large", env = "prod" }
+}
+```
+
