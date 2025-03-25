@@ -84,6 +84,15 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 
 - **Resource Graph** Terraform builds an internal graph of resources. This graph helps determine the dependencies between resources. Terraform then uses this graph to apply resources in the correct order.
 
+### Terraform Core Components ###
+- **Providers**
+- **Resources**
+- **Variables**
+- **Outputs**
+- **Data Sources**
+- **Modules**
+- **State Management (terraform.tfstate)**
+
 ### Terraform Modules ###
 - **What are Modules?**
 - **Creating and Using Modules**
