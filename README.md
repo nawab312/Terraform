@@ -122,6 +122,7 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 - **Using count vs. for_each**
 - **Dynamic Blocks in Terraform**
 - **Looping Over Maps and Lists**
+- https://github.com/nawab312/Terraform/blob/main/Terraform_Functions_Expressions_Loops_Dynamic_Blocks.md
 
 
 **Interview** : https://github.com/nawab312/Terraform/blob/main/Interview.md
