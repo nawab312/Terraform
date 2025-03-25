@@ -106,5 +106,14 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 - **Handling State Drift (terraform refresh, terraform apply -refresh-only)**
 - https://github.com/nawab312/Terraform/blob/main/Advance_Terraform_Features/Notes.md
 
+### Terraform Functions, Expressions, Loops & Dynamic Blocks ###
+- **Built-in Functions (length, join, lookup, etc.)**
+- **Conditional Expressions (count, for_each, dynamic blocks)**
+- **locals {} and Reusable Logic**
+- **Using count vs. for_each**
+- **Dynamic Blocks in Terraform**
+- **Looping Over Maps and Lists**
+
+
 **Interview** : https://github.com/nawab312/Terraform/blob/main/Interview.md
 
