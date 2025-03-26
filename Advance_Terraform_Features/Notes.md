@@ -68,3 +68,90 @@ State drift occurs when the real-world infrastructure differs from Terraform’s
 - *terraform import*
   - If Terraform does not recognize an existing resource, use `import`:
   - `terraform import aws_instance.example i-1234567890abcdef0`
+ 
+### Terraform Performance Optimization ###
+When working with Terraform at scale, optimizing performance is essential to reduce execution time, improve state management, and handle large configurations efficiently. Below are strategies to optimize Terraform performance.
+
+**Optimizing terraform plan & terraform apply Execution Time**
+
+*Use Parallelism (-parallelism)* 
+- By default, Terraform applies changes with 10 parallel operations. Increase or decrease parallelism based on your system and infrastructure.
+- Higher parallelism speeds up execution but may overload API rate limits
+- Lower parallelism helps in API rate-limited environments (e.g., AWS, Azure).
+```bash
+terraform apply -parallelism=20
+```
+
+*Targeted Plan & Apply (-target)*
+- Instead of running Terraform on the entire infrastructure, apply changes only to specific resources:
+```bash
+terraform plan -target=aws_instance.my_instance
+terraform apply -target=aws_instance.my_instance
+```
+
+*Reduce API Calls (-refresh=false)*
+- To skip refreshing the state during plan execution.
+- Useful when you know the infrastructure hasn’t changed externally.
+```bash
+terraform plan -refresh=false
+```
+
+**Caching and Remote State Performance**
+
+*Use Remote State (S3, GCS, Azure Blob)*
+- Local state files are slow and hard to share. Instead, use a remote backend like AWS S3 with DynamoDB locking:
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-lock"
+  }
+}
+```
+
+*Enable Local Caching for Remote State*
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    use_caching    = true
+  }
+}
+```
+
+**Managing Large Terraform Configurations**
+
+*Split Terraform Configurations into Modules*
+- Improves readability and parallel execution.
+- Reduces Terraform processing overhead.
+```hcl
+module "network" {
+  source = "./modules/network"
+}
+
+module "compute" {
+  source = "./modules/compute"
+}
+```
+
+*Use Workspaces for Multi-Environment Management*
+- Instead of maintaining separate configurations for dev, staging, and prod, use workspaces:
+```bash
+terraform workspace new dev
+terraform workspace select dev
+```
+
+*Optimizing State Storage*
+
+Terraform's state file size affects performance. Managing state efficiently improves execution speed.
+
+*Remove Unused Resources from State (terraform state rm)*
+- If a resource no longer needs to be managed by Terraform, remove it from state without deleting it
+- Reduces state file size and speeds up operations.
+```bash
+terraform state rm aws_instance.old_instance
+```
