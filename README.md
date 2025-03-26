@@ -106,13 +106,14 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 - **depends_on**
 - **prevent_destroy, ignore_changes, create_before_destroy**
 - **Handling Immutable Infrastructure**
-- **https://github.com/nawab312/Terraform/blob/main/Terraform_LifeCycle_Management/Notes.md**
+- https://github.com/nawab312/Terraform/blob/main/Terraform_LifeCycle_Management/Notes.md
 
 ###  Advanced Terraform Features ###
 - **Terraform Remote Backends (S3, Consul, etcd, Terraform Cloud)**
 - **Terraform Import (terraform import <resource> <id>)**
 - **Managing Long-Lived Resources (terraform taint, terraform untaint)**
 - **Handling State Drift (terraform refresh, terraform apply -refresh-only)**
+- **Terraform Performance Optimization**
 - https://github.com/nawab312/Terraform/blob/main/Advance_Terraform_Features/Notes.md
 
 ### Terraform Functions, Expressions, Loops & Dynamic Blocks ###
