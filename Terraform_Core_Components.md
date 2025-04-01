@@ -103,33 +103,124 @@ provider "aws" {
 
 **Variables**
 
+*Input Variables*
+
 ```hcl
 #variables.tf
 
-variable "region" {
-  description = "AWS Region"
-  type = String
-  value = "us-east-1"  
+variable "instance_type" {
+  description = "Type of EC2 instance"
+  type        = string
+  default     = "t2.micro"
 }
 ```
 
 ```hcl
 #main.tf
 
-provider "region" {
-  region = var.region  
+resource "aws_instance" "example" {
+  instance_type = var.instance_type
 }
 ```
 
-```hcl
-#terraform.tfvars
+*Variable Types*
 
-region = "us-west-2"
+String
+```hcl
+variable "region" {
+  type    = string
+  default = "us-east-1"
+}
+```
+```hcl
+provider "aws" {
+  region = var.region
+}
 ```
 
-- *variables.tf Define the variables and their properties.
-- *terraform.tfvars* Specifies value for variables
-- Use -var to override: `terraform apply -var="region=us-east-1"`
+Number
+```hcl
+variable "instance_count" {
+  type    = number
+  default = 2
+}
+```
+
+List
+```hcl
+variable "availability_zones" {
+  type    = list(string)
+  default = ["us-east-1a", "us-east-1b"]
+}
+```
+```hcl
+resource "aws_subnet" "example" {
+  count             = length(var.availability_zones)
+  availability_zone = var.availability_zones[count.index]
+}
+```
+
+Map
+```hcl
+variable "instance_amis" {
+  type = map(string)
+  default = {
+    us-east-1 = "ami-12345"
+    us-west-1 = "ami-67890"
+  }
+}
+```
+```hcl
+resource "aws_instance" "example" {
+  ami = var.instance_amis["us-east-1"]
+}
+```
+
+Object
+```hcl
+variable "server_config" {
+  type = object({
+    instance_type = string
+    ami           = string
+    count         = number
+  })
+  default = {
+    instance_type = "t3.micro"
+    ami           = "ami-12345"
+    count         = 2
+  }
+}
+```
+```hcl
+resource "aws_instance" "example" {
+  count         = var.server_config.count
+  instance_type = var.server_config.instance_type
+  ami           = var.server_config.ami
+}
+```
+
+*Default Values and Overriding Variables*
+- Command Line (-var flag)
+  ```bash
+  terraform apply -var="instance_type=t3.medium"
+  ```
+- Environment Variables
+  ```bash
+  export TF_VAR_instance_type="t3.medium"
+  ```
+- Terraform .tfvars File
+  ```hcl
+  instance_type = "t3.medium"
+  ```
+
+*Sensitive Variables*
+- Terraform allows marking variables and outputs as sensitive to prevent displaying them in logs or CLI outputs.
+```hcl
+variable "db_password" {
+  type      = string
+  sensitive = true
+}
+```
 
 ---
 
