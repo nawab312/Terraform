@@ -1,13 +1,3 @@
-
-    Providers
-    Resources
-    Variables
-    Outputs
-    Data Sources
-    Modules
-    State Management (terraform.tfstate)
----
-
 **Providers**
 - Provider is a plugin responsible for interacting with an API of a service or platform
 - Provider allows Terraform to manage infrastructure resources such as cloud platforms (e.g., AWS, Azure, GCP), DNS providers, version control systems, and more
