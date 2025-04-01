@@ -1,2 +1,0 @@
-`main-1.tf`&nbsp;&nbsp; Creates an EC2 instance in AWS with the t2.micro type, installs Apache, and starts the Apache service using a remote-exec provisioner, while also setting up a security group to allow SSH access from any IP address. The instance is associated with a key pair (myKey) for SSH <br><br>
-`main-2.tf`&nbsp;&nbsp; Creates an EC2 instance in AWS with the t2.micro type. Setting up a security group to allow SSH access from any IP address. Does not Have Key Pair so can only connect from AWS Console
