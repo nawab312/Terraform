@@ -5,6 +5,7 @@
 - **Outputs**
 - **Data Sources**
 - **State Management (terraform.tfstate)**
+- https://github.com/nawab312/Terraform/blob/main/Terraform_Core_Components.md
 
 ### Terraform Modules ###
 - **What are Modules?**
