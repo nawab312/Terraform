@@ -48,7 +48,6 @@ In this case, Terraform will ensure that the `aws_security_group` is created bef
 - **Variables**
 - **Outputs**
 - **Data Sources**
-- **Modules**
 - **State Management (terraform.tfstate)**
 
 ### Terraform Modules ###
