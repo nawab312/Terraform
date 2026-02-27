@@ -19,7 +19,7 @@ Here, the aws_subnet resource depends on the aws_vpc resource because the subnet
 ```hcl
 resource "aws_security_group" "example" {
   name = "example"
-}https://github.com/nawab312/Terraform/blob/main/Advance_Terraform_Features/Notes.md
+}
 
 resource "aws_instance" "example" {
   ami = "ami-123456"
