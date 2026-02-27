@@ -1,11 +1,4 @@
 
-    Built-in Functions (length, join, lookup, etc.)
-    Conditional Expressions (count, for_each, dynamic blocks)
-    locals {} and Reusable Logic
-    Using count vs. for_each
-    Dynamic Blocks in Terraform
-    Looping Over Maps and Lists
-
 **for_each**
 
 The for_each meta-argument in Terraform allows you to iterate over a map or a set of strings to create multiple resources dynamically.
