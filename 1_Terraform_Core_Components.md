@@ -89,6 +89,26 @@ provider "aws" {
 }
 ```
 
+- `terraform plan` compares three things:
+  ```code
+  Terraform Configuration
+  VS
+  Terraform State
+  VS
+  Real Infrastructure
+  ```
+  - It then generates an execution plan.
+  - Scenario: EC2 instance deleted manually in AWS.
+    - Terraform checks state
+    - Terraform checks actual AWS infrastructure.
+    - Sees the resource is missing.
+    - Output: `+ create aws_instance.app`
+   
+- `terraform apply` executes the plan. Terraform will:
+  - Detect instance missing
+  - Create a new EC2 instance
+  - Update the state file
+
 ---
 
 **Variables**
