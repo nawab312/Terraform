@@ -1,7 +1,19 @@
+**count**
+- Creates multiple instances of a resource based on a number.
+- Instances are *indexed* numerically: `aws_instance.app[0]`, `aws_instance.app[1]`
+- Works well when resources are identical and order doesn’t matter.
+```hcl
+resource "aws_instance" "app" {
+  count = 3
+  ami   = "ami-123"
+}
+```
 
 **for_each**
 
-The for_each meta-argument in Terraform allows you to iterate over a map or a set of strings to create multiple resources dynamically.
+- The for_each meta-argument in Terraform allows you to iterate over a map or a set of strings to create multiple resources dynamically.
+- Instances are identified by *keys*, not numeric *indexes*
+- Better when: Each resource needs different configuration
 ```hcl
 resource "aws_instance" "example" {
   for_each = {
@@ -16,6 +28,7 @@ resource "aws_instance" "example" {
   }
 }
 ```
+- Instances: `aws_instance.example["server1"]`, `aws_instance.example["server2"]`
 
 **for**
 - Convert List to Uppercase
