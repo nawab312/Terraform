@@ -32,15 +32,15 @@ What happens if you remove one item from the middle of a `count` list?
   ```
 - So yes — worker is recreated, but the original worker instance is destroyed first. That’s *unintended infrastructure churn*.
 - Why `for_each` Avoids This.
-- With: `for_each = toset(var.servers)`. You are converting the list into a set.
-- Resulting set: `{"web", "api", "worker"}`. *In Terraform, when for_each uses a set, the key and value are the same.*
-- Now Terraform creates resources like:
-  ```hcl
-  aws_instance.app["web"]
-  aws_instance.app["api"]
-  aws_instance.app["worker"]
-  ```
-- If you remove "api": Only "api" is destroyed. "worker" stays untouched.
+  - With: `for_each = toset(var.servers)`. You are converting the list into a set.
+  - Resulting set: `{"web", "api", "worker"}`. *In Terraform, when for_each uses a set, the key and value are the same.*
+  - Now Terraform creates resources like:
+    ```hcl
+    aws_instance.app["web"]
+    aws_instance.app["api"]
+    aws_instance.app["worker"]
+    ```
+  - If you remove "api": Only "api" is destroyed. "worker" stays untouched.
 
 **for_each**
 
