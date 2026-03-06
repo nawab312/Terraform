@@ -11,6 +11,15 @@ It contains the following key information: Resources, Outputs, Provider Informat
 - **Local State File:** By default, Terraform stores the state in a file named terraform.tfstate in the current working directory. This is useful for simple setups or for testing purposes, but it has some limitations, especially in team environments.
 - **Remote State:** In production environments, it is a best practice to store the state remotely (e.g., in an AWS S3 bucket, HashiCorp Consul, or Terraform Cloud). Remote state provides better collaboration, state locking, versioning, and redundancy.
 
+---
+
+What happens if two engineers run terraform apply at the same time with a local state file?
+- Both users read the same old state and start applying changes independently. But both started with the same state snapshot.
+- Whoever writes the state file last overwrites the other changes.
+- State file becomes inconsistent
+
+---
+
 **State Locking**
 
 State Locking refers to the mechanism that prevents multiple users or processes from simultaneously modifying the Terraform state file. When Terraform is working with infrastructure, it needs to track the current state of the resources. If multiple users or processes try to modify the state file at the same time, it could lead to *race conditions* and *potentially corrupt the state*, resulting in inconsistent infrastructure.
