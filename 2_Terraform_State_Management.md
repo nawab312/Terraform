@@ -13,7 +13,7 @@ It contains the following key information: Resources, Outputs, Provider Informat
 
 ---
 
-What happens if two engineers run terraform apply at the same time with a local state file?
+What happens if two engineers run `terraform apply` at the same time with a local state file?
 - Both users read the same old state and start applying changes independently. But both started with the same state snapshot.
 - Whoever writes the state file last overwrites the other changes.
 - State file becomes inconsistent
