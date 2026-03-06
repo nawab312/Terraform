@@ -40,6 +40,7 @@ What happens if you remove one item from the middle of a `count` list?
     aws_instance.app["api"]
     aws_instance.app["worker"]
     ```
+  - Each instance is tied to a key
   - If you remove "api": Only "api" is destroyed. "worker" stays untouched.
 
 **for_each**
