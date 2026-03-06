@@ -157,4 +157,22 @@ Acquiring state lock. This may take a few moments...
 - This command will move the state file from its current location to the specified backend (Like local to S3): `terraform init -migrate-state`
 
 
+- What Actually Happens Internally
+```
+terraform apply
+     ↓
+check DynamoDB lock table
+     ↓
+lock acquired
+     ↓
+read state from S3
+     ↓
+execute changes
+     ↓
+write new state to S3
+     ↓
+release lock
+```
+
+
 
