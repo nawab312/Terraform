@@ -79,3 +79,33 @@ resource "aws_instance" "example" {
   }
 }
 ```
+
+---
+
+**IMMUTABLE INFRASTRUCTURE**
+
+You run `terraform plan` and see a resource is going to be *destroyed* and *recreated* instead of just updated in place. Why does this happen?
+- Some resource properties in AWS cannot be updated in place. When you change them, the only way to apply the change is to destroy and recreate the resource.
+```hcl
+# Changing RDS engine version
+resource "aws_db_instance" "mydb" {
+  engine         = "mysql"
+  engine_version = "5.7"  # changing this to "8.0" forces recreation
+}
+
+# Changing EC2 AMI
+resource "aws_instance" "myec2" {
+  ami = "ami-12345"  # changing AMI forces recreation
+}
+
+# Changing S3 bucket name
+resource "aws_s3_bucket" "mybucket" {
+  bucket = "my-old-name"  # changing name forces recreation
+}
+```
+
+Terraform shows this in plan output as:
+```
+-/+ resource will be destroyed and recreated
+    # forces replacement
+```
