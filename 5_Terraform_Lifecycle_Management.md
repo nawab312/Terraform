@@ -109,3 +109,8 @@ Terraform shows this in plan output as:
 -/+ resource will be destroyed and recreated
     # forces replacement
 ```
+
+Suppose you import 50 existing EC2 instances. Later you change: `instance_type = "t3.micro"` to `instance_type = "t3.small"`. Will Terraform update the instances in-place or recreate them?
+- For Amazon EC2, changing the instance type does not require resource recreation, but it cannot be done while the instance is running.
+- Terraform will plan an in-place update, but internally it must stop and start the instance.
+- Other similar Examples: Security Groups, Tags
