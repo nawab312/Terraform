@@ -98,6 +98,24 @@ State drift occurs when the real-world infrastructure differs from Terraform’s
   - If Terraform does not recognize an existing resource, use `import`:
   - `terraform import aws_instance.example i-1234567890abcdef0`
  
+You have a Terraform module that creates an EKS cluster. A teammate runs terraform apply and it succeeds — but when you run terraform plan immediately after, Terraform shows unexpected diffs even though nobody changed the code.
+Why does this happen and how do you fix it?
+- When AWS creates a resource, it sometimes automatically adds default values to fields that we didn't specify in your Terraform code.
+  ```hcl
+  # You write this in Terraform
+  resource "aws_eks_cluster" "my_cluster" {
+    name     = "my-cluster"
+    role_arn = aws_iam_role.cluster.arn
+  }
+  
+  # But AWS automatically adds defaults like:
+  # - kubernetes_network_config
+  # - encryption_config
+  # - default tags
+  # Terraform sees these as diffs!
+  ```
+- How to fix: `lifecycle { ignore_changes }`
+ 
 ### Terraform Performance Optimization ###
 When working with Terraform at scale, optimizing performance is essential to reduce execution time, improve state management, and handle large configurations efficiently. Below are strategies to optimize Terraform performance.
 
