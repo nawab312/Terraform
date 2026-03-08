@@ -24,6 +24,35 @@ terraform import aws_s3_bucket.my_bucket my-existing-bucket
 terraform state show aws_s3_bucket.my_bucket
 ```
 
+**New way — Terraform 1.5+ import block:**
+```hcl
+import {
+  to = aws_instance.myec2
+  id = "i-1234567890abcdef0"
+}
+
+resource "aws_instance" "myec2" {
+}
+```
+- Run plan with config generation
+  ```bash
+  terraform plan -generate-config-out=generated.tf
+  ```
+  - Terraform will read the real infrastructure
+  - Generate a complete resource configuration
+  - Save it to `generated.tf`
+  - Example output:
+    ```
+    resource "aws_instance" "myec2" {
+    ami           = "ami-xxxxx"
+    instance_type = "t3.micro"
+    }
+    ```
+- The generated file usually includes many attributes (even defaults), so teams normally:
+  - Move it into the main Terraform files
+  - Remove unnecessary fields
+  - Align it with existing modules
+
 ![image](https://github.com/user-attachments/assets/779f69eb-5938-492a-a115-abe7d1b0bf4c)
 
 ###  Managing Long-Lived Resources ###
