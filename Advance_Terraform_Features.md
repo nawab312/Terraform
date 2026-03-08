@@ -115,7 +115,20 @@ Why does this happen and how do you fix it?
   # Terraform sees these as diffs!
   ```
 - How to fix: `lifecycle { ignore_changes }`
- 
+  ```hcl
+  resource "aws_eks_cluster" "my_cluster" {
+    name     = "my-cluster"
+    role_arn = aws_iam_role.cluster.arn
+  
+    lifecycle {
+      ignore_changes = [
+        tags,                    # ignore auto-added tags
+        kubernetes_network_config # ignore AWS defaults
+      ]
+    }
+  }
+  ```
+  
 ### Terraform Performance Optimization ###
 When working with Terraform at scale, optimizing performance is essential to reduce execution time, improve state management, and handle large configurations efficiently. Below are strategies to optimize Terraform performance.
 
